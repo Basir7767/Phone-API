@@ -70,5 +70,5 @@ const displayPhonedetail = phone => {
         <p class="card-text">Relese-Date: ${phone.releaseDate}</p>
         </div>`
     phoneDetails.appendChild(div);
-    console.log(phoneDetails);
+    // console.log(phoneDetails);
 }

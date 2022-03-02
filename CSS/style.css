@@ -14,3 +14,16 @@ body{
   margin-left: 2px;
   background-color: gray;
 }
+
+.footer{
+    background-color:darkcyan;
+    height: 100px;
+    text-align: center;
+    padding: 30px;
+}
+.btn-search{
+    color:blueviolet;
+}
+.search-text{
+    color:purpleSS;
+}
