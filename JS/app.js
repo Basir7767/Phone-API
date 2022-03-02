@@ -19,30 +19,32 @@ const displaySearchResult = data => {
         div.classList.add('col')
         div.innerHTML = `   
     <div class="card h-25">
-        <img src="${data.image}" class="card-img-top" alt="...">
+        <img src="${data.image}" class="card-img-top " alt="...">
         <div class="card-body">
             <h5 class="card-title">${data.brand}</h5>
             <p class="card-text">Brand Model: ${data.phone_name}</p>
         </div>
         <div class="d-grid gap-2 w-50">
-        <button onclick="loadPhoneDetails('${data.slug}')" class="btn btn-primary" type="button">Button</button>
+        <button onclick="loadPhoneDetails('${data.slug}')" class="btn btn-primary" type="button">Details</button>
         
       </div >
     </div > `
         searchResult.appendChild(div);
-        console.log(data);
+        // console.log(data);
     })
 }
 
 const loadPhoneDetails = (details) => {
-    console.log(details);
-    const phoneUrl = `https://openapi.programming-hero.com/api/phone/{details}`
+    // console.log(details);
+    const phoneUrl = `https://openapi.programming-hero.com/api/phone/${details}`
+    console.log(phoneUrl);
     fetch(phoneUrl)
         .then(res => res.json())
-        .then(data => console.log(data));
+        .then(data => console.log(data.data));
 }
 
 const setPhoneDetails = (info) => {
+    console.log(info);
     document.getElementById('modal').innerHTML = `<div class="card">
     <ul class="list-group list-group-flush">
         <li class="list-group-item">
