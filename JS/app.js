@@ -1,11 +1,13 @@
+document.getElementById('error-message').style.display = 'none';
 const searchPhone = () => {
     const searchFeild = document.getElementById('search-feild')
     const searchText = searchFeild.value;
 
     // clear data
     searchFeild.value = '';
+    document.getElementById('error-message').style.display = 'none';
     if (searchText == '') {
-        console.log('please write something to display');
+        // console.log('please write something to display');
     }
     else {
         // load data
@@ -13,17 +15,19 @@ const searchPhone = () => {
         // console.log(url);
         fetch(url)
             .then(res => res.json())
-            .then(data => displaySearchResult(data.data));
+            .then(data => displaySearchResult(data.data))
+            .catch(error => displayError(error));
     }
-
-
+}
+const displayError = error => {
+    document.getElementById('error-message').style.display = 'block';
 }
 
 const displaySearchResult = data => {
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
     if (data.length == 0) {
-        console.log('No result found');
+        // console.log('No result found');
     }
     data.forEach(data => {
         // console.log(data);
