@@ -1,0 +1,16 @@
+/* Google font  */
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Dancing+Script&family=Poppins:wght@500&display=swap');
+
+body{
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    background-color: lightblue;
+}
+#search-result{
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-right: 2px;
+  margin-left: 2px;
+  background-color: gray;
+}

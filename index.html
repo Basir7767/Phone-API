@@ -13,26 +13,38 @@
     <link rel="stylesheet" href="CSS/style.css">
 </head>
 
-<body class="bg-grey">
-    <h2 class="text-center text-success">Search your phone</h2>
-    <!-- Phone search area -->
-    <div class="input-group mb-3 w-50 mx-auto">
-        <input id="search-feild" type="text" class="form-control" placeholder="Search the phone you want"
-            aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button onclick="searchPhone()" class="btn btn-outline-secondary" type="button"
-            id="button-search">Search</button>
-    </div>
-    <div>
-        <p id="error-message" class="text-danger text-center">Something went wrong please try again later</p>
-    </div>
+<body>
+    <main>
+        <header>
+            <h2 class="text-center text-success mt-5 mb-3">Search your phone</h2>
+        </header>
 
-    <!-- single phone details -->
-    <div id="phone-details" class="w-50 mx-auto">
+        <!-- Phone search area -->
+        <section>
+            <div class="input-group mb-3 w-50 mx-auto">
+                <input id="search-feild" type="text" class="form-control" placeholder="Search the phone you want"
+                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button onclick="searchPhone()" class="btn btn-outline-secondary" type="button"
+                    id="button-search">Search</button>
+            </div>
+            <div>
+                <p id="error-message" class="text-danger text-center">Something went wrong please try again later</p>
+            </div>
+        </section>
 
-    </div>
-    <!-- Phone result -->
-    <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 w-50 mx-auto">
-    </div>
+        <section>
+            <!-- single phone details -->
+            <div id="phone-details" class="w-50 mx-auto">
+        </section>
+
+        <section>
+            </div>
+            <!-- Phone result -->
+            <div id="search-result" class="row row-cols-1 row-cols-md-3 g-4 w-50 mx-auto">
+            </div>
+        </section>
+    </main>
+
 
     <!-- Bootstrap script  -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
