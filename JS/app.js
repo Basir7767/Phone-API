@@ -1,78 +1,70 @@
 const searchPhone = () => {
     const searchFeild = document.getElementById('search-feild')
     const searchText = searchFeild.value;
-    // console.log(searchText);
+
+    // clear data
     searchFeild.value = '';
-    const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
-    // console.log(url);
-    fetch(url)
-        .then(res => res.json())
-        .then(data => displaySearchResult(data.data));
+    if (searchText == '') {
+        console.log('please write something to display');
+    }
+    else {
+        // load data
+        const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
+        // console.log(url);
+        fetch(url)
+            .then(res => res.json())
+            .then(data => displaySearchResult(data.data));
+    }
+
+
 }
 
 const displaySearchResult = data => {
     const searchResult = document.getElementById('search-result');
-    // console.log(data);
+    searchResult.textContent = '';
+    if (data.length == 0) {
+        console.log('No result found');
+    }
     data.forEach(data => {
         // console.log(data);
         const div = document.createElement('div');
         div.classList.add('col')
         div.innerHTML = `   
-    <div class="card h-25">
+    <div  onclick="loadPhoneDetails('${data.slug}')" class="card h-100">
         <img src="${data.image}" class="card-img-top " alt="...">
         <div class="card-body">
             <h5 class="card-title">${data.brand}</h5>
             <p class="card-text">Brand Model: ${data.phone_name}</p>
         </div>
-        <div class="d-grid gap-2 w-50">
-        <button onclick="loadPhoneDetails('${data.slug}')" class="btn btn-primary" type="button">Details</button>
-        
-      </div >
-    </div > `
+        </div >`
         searchResult.appendChild(div);
         // console.log(data);
     })
 }
 
-const loadPhoneDetails = (details) => {
+const loadPhoneDetails = (phoneId) => {
     // console.log(details);
-    const phoneUrl = `https://openapi.programming-hero.com/api/phone/${details}`
+    const phoneUrl = `https://openapi.programming-hero.com/api/phone/${phoneId}`
     console.log(phoneUrl);
     fetch(phoneUrl)
         .then(res => res.json())
-        .then(data => console.log(data.data));
+        .then(data => displayPhonedetail(data.data));
 }
 
-const setPhoneDetails = (info) => {
-    console.log(info);
-    document.getElementById('modal').innerHTML = `<div class="card">
-    <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-            <p><strong>Brand:${info.brand}</strong> <span id="brand"></span></p>
-            <p id="released"></p>
-        </li>
-
-        <li class="list-group-item">
-            <p><strong>Storage:${info.storage}</strong> <span id="storage"></span></p>
-        </li>
-        <li class="list-group-item">
-            <p><strong>Display:${info.displaySize}</strong> <span id="display"></span></p>
-        </li>
-        <li class="list-group-item">
-            <p><strong>Chipset:${info.chipSet}</strong> <span id="chipset"></span></p>
-        </li>
-        <li class="list-group-item">
-            <p><strong>Memory:${info.displaySize}</strong> <span id="memory"></span></p>
-        </li>
-        <li class="list-group-item">
-            <p><strong>Sensors:${info.sensors}</strong> <span id="sensors"></span></p>
-        </li>
-        <li class="list-group-item">
-            <p><strong>WLAN:${info.WLAN}</strong> <span id="wlan"></span></p>
-        </li>
-        <li class="list-group-item">
-            <p><strong>USB:${info.USB}</strong> <span id="usb"></span></p>
-        </li>
-    </ul>
-</div>`
+const displayPhonedetail = phone => {
+    console.log(phone);
+    const phoneDetails = document.getElementById('phone-details');
+    const div = document.createElement('div');
+    div.classList.add('card');
+    div.innerHTML = `
+    <img class="card-img-top " src="${phone.image}" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">Brand: ${phone.brand}</h5>
+        <p class="card-text">Storage: ${phone.mainFeatures.storage}</p>
+        <p class="card-text">Display: ${phone.mainFeatures.displaySize}</p>
+        <p class="card-text">Chipset: ${phone.mainFeatures.chipSet}</p>
+        <p class="card-text">Relese-Date: ${phone.releaseDate}</p>
+        </div>`
+    phoneDetails.appendChild(div);
+    console.log(phoneDetails);
 }
